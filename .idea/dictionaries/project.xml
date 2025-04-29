@@ -5,6 +5,7 @@
       <w>makechoice</w>
       <w>newbox</w>
       <w>removebox</w>
+      <w>repval</w>
       <w>setupboxes</w>
       <w>tempremove</w>
     </words>

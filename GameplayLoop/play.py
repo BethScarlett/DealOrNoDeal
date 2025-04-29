@@ -4,8 +4,8 @@ from Setup import setup
 def play():
     choice = gamefunctions.makechoice()
 
-    boxes = {1: 10, 2: 11, 3: 12, 4: 13, 5: 15, 6: 16, 7: 24, 8: 50}
-    #boxes = setup.setupboxes()
+    #boxes = {1: 10, 2: 11, 3: 12, 4: 13, 5: 15, 6: 16, 7: 24, 8: 50}
+    boxes = setup.setupboxes()
     count : int = 0
 
     while len(boxes) > 0:

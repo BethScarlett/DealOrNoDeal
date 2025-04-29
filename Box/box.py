@@ -4,4 +4,8 @@ class Box :
         self.value = value
 
     def __repr__(self):
-        return f"Box number {self.number} with a value of {self.value}"
+        if self.value < 99:
+            repval = f"{self.value}p"
+        else :
+            repval = f"£{int(self.value / 100):,}"
+        return f"Box number {self.number} with a value of {repval}"

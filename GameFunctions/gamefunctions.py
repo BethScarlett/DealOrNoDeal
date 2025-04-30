@@ -1,3 +1,5 @@
+########## Validation ##########
+
 def validateinput(choice):
     if not choice.isdigit():
         return False
@@ -9,12 +11,16 @@ def validateinput(choice):
 
     return True
 
+########## BOX FUNCTIONS ###########
+
 def removebox(boxes, choice):
     try:
         print(boxes[choice])
         boxes.pop(choice)
+        return True
     except KeyError:
         print("Sorry I can't find that box.")
+        return False
 
 def makechoice():
     choice = input("To begin, please select a box number between 1 and 22: ")
@@ -24,3 +30,20 @@ def makechoice():
                        "and 22: ")
 
     return int(choice)
+
+########## OFFER ##########
+
+def makeoffer(boxes):
+    offer = 0.00
+    for box in boxes:
+        offer += boxes[box].value
+        print(offer)
+
+    offer = (offer / len(boxes))/100
+
+    if offer < 1:
+        offer = round(offer, 2)
+    else:
+        offer = int(offer)
+
+    return offer

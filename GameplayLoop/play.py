@@ -12,7 +12,7 @@ def play():
         print("Boxes left: ")
 
         for box in boxes:
-            print(box)
+            print(boxes[box])
 
         decidedbox = input("Please choose a box to remove: ")
 
@@ -20,6 +20,7 @@ def play():
             decidedbox = input("Invalid selection. Please choose a box to remove: ")
 
         result = gamefunctions.removebox(boxes, int(decidedbox))
+
         if result and len(boxes) > 1:
             if count == 4:
                 print(f"Offer of £{gamefunctions.makeoffer(boxes)}")

@@ -34,9 +34,16 @@ def makechoice():
 ########## OFFER ##########
 
 def makeoffer(boxes):
-    offer = 0
+    offer = 0.00
     for box in boxes:
-        print("box = " + str(box) + " value = " + str(boxes[box]))
-        offer += boxes[box]
+        offer += boxes[box].value
+        print(offer)
 
-    return int(offer / len(boxes))
+    offer = (offer / len(boxes))/100
+
+    if offer < 1:
+        offer = round(offer, 2)
+    else:
+        offer = int(offer)
+
+    return offer

@@ -15,7 +15,6 @@ def validateinput(choice):
 
 def removebox(boxes, choice):
     try:
-        print(boxes[choice])
         boxes.pop(choice)
         return True
     except KeyError:

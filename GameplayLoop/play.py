@@ -4,9 +4,14 @@ from Setup import setup
 def play():
     choice = gamefunctions.makechoice()
 
-    #boxes = {1: 10, 2: 11, 3: 12, 4: 13, 5: 15, 6: 16, 7: 24, 8: 50}
     boxes = setup.setupboxes()
-    count : int = 0
+    count : int = 1
+
+    while not boxes.get(choice):
+        print("Sorry box doesn't exist.")
+        choice = gamefunctions.makechoice()
+
+    gamefunctions.removebox(boxes, int(choice))
 
     while len(boxes) > 0:
         print("Boxes left: ")

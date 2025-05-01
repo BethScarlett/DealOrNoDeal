@@ -37,25 +37,24 @@ def play():
         while not gamefunctions.validateinput(decidedbox):
             decidedbox = input("Invalid selection. Please choose a box to remove: ")
 
-        decidedbox = int(decidedbox)
-        print(f"You've chosen {boxes[decidedbox]}")
+        try:
+            decidedbox = int(decidedbox)
+            print(f"You have chosen: {boxes[decidedbox]}")
+            result = gamefunctions.removebox(boxes, decidedbox)
 
-        test = str(boxes[decidedbox])
+            amount = str(boxes[decidedbox])
+            i = str(boxes[decidedbox]).index("of")
+            availablenums.remove(amount[i + 3:])
 
-        i = str(boxes[decidedbox]).index("of")
-        print(test[i + 3:])
-
-        result = gamefunctions.removebox(boxes, decidedbox)
-        availablenums.remove(test[i + 3:])
-
-        if result and len(boxes) > 1:
-            if count == 4:
-                print(f"Offer of £{gamefunctions.makeoffer(boxes)}")
-                count = 1
-            else :
-                print ("Let's go again")
-                count += 1
-
+            if result and len(boxes) > 1:
+                if count == 4:
+                    print(f"Offer of £{gamefunctions.makeoffer(boxes)}")
+                    count = 1
+                else:
+                    print("Let's go again")
+                    count += 1
+        except KeyError:
+            print("I'm sorry, but the box you've chosen has already been removed from the pool.")
 
     end = input("Y/N to end game or loop: ").upper()
 

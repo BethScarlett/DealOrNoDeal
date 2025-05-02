@@ -15,7 +15,6 @@ def validateinput(choice):
 
 def removebox(boxes, choice):
     try:
-        print(boxes[choice])
         boxes.pop(choice)
         return True
     except KeyError:
@@ -37,7 +36,6 @@ def makeoffer(boxes):
     offer = 0.00
     for box in boxes:
         offer += boxes[box].value
-        print(offer)
 
     offer = (offer / len(boxes))/100
 

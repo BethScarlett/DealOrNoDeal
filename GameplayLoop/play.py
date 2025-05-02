@@ -6,6 +6,7 @@ def play():
 
     boxes = setup.setupboxes()
     count : int = 1
+    acceptoffer : bool = False
 
     while not boxes.get(choice):
         print("Sorry, but box doesn't exist.")
@@ -17,7 +18,7 @@ def play():
                      "£1,000", "£3,000", "£5,000", "£10,000", "£15,000", "£20,000", "£35,000",
                      "£50,000", "£75,000", "£100,000", "£250,000"]
 
-    while len(boxes) > 0:
+    while len(boxes) > 0 and not acceptoffer:
         print("Boxes left: ")
 
         for box in boxes:
@@ -50,6 +51,7 @@ def play():
             if result and len(boxes) > 1:
                 if count == 4:
                     print(f"Offer of £{gamefunctions.makeoffer(boxes)}")
+                    acceptoffer = gamefunctions.acceptoffer()
                     count = 1
                 else:
                     print("Let's go again")
@@ -60,7 +62,7 @@ def play():
     end = input("Y/N to end game or loop: ").upper()
 
     while end != "Y" and end != "N":
-        end = input("Sorry try again: ")
+        end = input("Sorry try again: ").upper()
 
     if end == "Y":
         return True

@@ -45,3 +45,14 @@ def makeoffer(boxes):
         offer = int(offer)
 
     return offer
+
+def acceptoffer() -> bool:
+    decision = input("Would you like to accept this offer (Y/N)? ").upper()
+
+    while decision != "Y" and decision != "N":
+        decision = input("Sorry I didn't quite catch that. Try again: ").upper()
+
+    if decision == "Y":
+        return True
+    else:
+        return False

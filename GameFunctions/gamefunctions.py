@@ -36,7 +36,6 @@ def makeoffer(boxes):
     offer = 0.00
     for box in boxes:
         offer += boxes[box].value
-        print(offer)
 
     offer = (offer / len(boxes))/100
 

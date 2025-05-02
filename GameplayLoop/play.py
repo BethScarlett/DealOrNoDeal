@@ -40,11 +40,12 @@ def play():
         try:
             decidedbox = int(decidedbox)
             print(f"You have chosen: {boxes[decidedbox]}")
-            result = gamefunctions.removebox(boxes, decidedbox)
 
             amount = str(boxes[decidedbox])
             i = str(boxes[decidedbox]).index("of")
             availablenums.remove(amount[i + 3:])
+
+            result = gamefunctions.removebox(boxes, decidedbox)
 
             if result and len(boxes) > 1:
                 if count == 4:

@@ -6,7 +6,7 @@ def validateinput(choice):
 
     choice = int(choice)
 
-    if choice < 1 or choice > 22:
+    if (choice < 1 or choice > 24) or choice == 23:
         return False
 
     return True
@@ -22,11 +22,11 @@ def removebox(boxes, choice):
         return False
 
 def makechoice():
-    choice = input("To begin, please select a box number between 1 and 22: ")
+    choice = input("To begin, please select a box number between 1 and 24, excluding 23: ")
 
     while not validateinput(choice):
         choice = input("I'm sorry that's not a valid input. please select a box number between 1 "
-                       "and 22: ")
+                       "and 24, excluding 23: ")
 
     return int(choice)
 

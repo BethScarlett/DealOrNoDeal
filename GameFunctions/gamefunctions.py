@@ -1,4 +1,6 @@
 ########## Validation ##########
+import random
+
 
 def validateinput(choice):
     if not choice.isdigit():
@@ -57,3 +59,27 @@ def acceptoffer(offer) -> bool:
         return True
     else:
         return False
+
+########## BOX 23 ##########
+
+def offertwentythree(winnings):
+    #Box 23 can either double money, half money, lose all money, add £10,000 or do nothing
+    choice = input("Will you take box 23? ").upper()
+    if choice == "Y":
+        gamble = ["Double", "Half", "Empty", "Add", "None"]
+        outcome = random.choice(gamble)
+        match outcome:
+            case "Double":
+                winnings *= 2
+                return winnings
+            case "Half":
+                winnings /= 2
+                return int(winnings)
+            case "Empty":
+                return 0
+            case "Add":
+                winnings += 10000
+                return winnings
+            case default:
+                return winnings
+    return None

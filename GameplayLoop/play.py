@@ -1,3 +1,4 @@
+from Box.box import Box
 from GameFunctions import gamefunctions
 from Setup import setup
 
@@ -6,18 +7,20 @@ def play():
 
     boxes = setup.setupboxes()
     count : int = 1
+    acceptoffer : bool = False
 
     while not boxes.get(choice):
         print("Sorry, but box doesn't exist.")
         choice = gamefunctions.makechoice()
 
+    userbox : Box = boxes[choice]
     gamefunctions.removebox(boxes, int(choice))
 
     availablenums = ["1p", "10p", "50p", "£1", "£5", "£10", "£50", "£100", "£250", "£500", "£750",
                      "£1,000", "£3,000", "£5,000", "£10,000", "£15,000", "£20,000", "£35,000",
                      "£50,000", "£75,000", "£100,000", "£250,000"]
 
-    while len(boxes) > 0:
+    while len(boxes) > 0 and not acceptoffer:
         print("Boxes left: ")
 
         for box in boxes:
@@ -49,7 +52,9 @@ def play():
 
             if result and len(boxes) > 1:
                 if count == 4:
-                    print(f"Offer of £{gamefunctions.makeoffer(boxes)}")
+                    offer = gamefunctions.makeoffer(boxes, userbox.value)
+                    print(f"Offer of £{offer}")
+                    acceptoffer = gamefunctions.acceptoffer(offer)
                     count = 1
                 else:
                     print("Let's go again")
@@ -57,10 +62,11 @@ def play():
         except KeyError:
             print("I'm sorry, but the box you've chosen has already been removed from the pool.")
 
+    print("You had " + str(userbox))
     end = input("Y/N to end game or loop: ").upper()
 
     while end != "Y" and end != "N":
-        end = input("Sorry try again: ")
+        end = input("Sorry try again: ").upper()
 
     if end == "Y":
         return True

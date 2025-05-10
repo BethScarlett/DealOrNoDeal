@@ -32,12 +32,12 @@ def makechoice():
 
 ########## OFFER ##########
 
-def makeoffer(boxes):
+def makeoffer(boxes, userbox):
     offer = 0.00
     for box in boxes:
         offer += boxes[box].value
 
-    offer = (offer / len(boxes))/100
+    offer = ((offer + userbox) / len(boxes) + 1)/100
 
     if offer < 1:
         offer = round(offer, 2)
@@ -45,3 +45,15 @@ def makeoffer(boxes):
         offer = int(offer)
 
     return offer
+
+def acceptoffer(offer) -> bool:
+    decision = input("Would you like to accept this offer (Y/N)? ").upper()
+
+    while decision != "Y" and decision != "N":
+        decision = input("Sorry I didn't quite catch that. Try again: ").upper()
+
+    if decision == "Y":
+        print(f"You have accepted the offer. Congratulations you've won £{offer}.")
+        return True
+    else:
+        return False

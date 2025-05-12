@@ -32,6 +32,14 @@ def makechoice():
 
     return int(choice)
 
+def swapbox(rem_box, user_box):
+    swap = input("Would you like to swap boxes (Y/N)? ").upper()
+
+    if swap == "Y":
+        return rem_box
+    else:
+        return user_box
+
 ########## OFFER ##########
 
 def makeoffer(boxes, userbox):
@@ -82,4 +90,6 @@ def offertwentythree(winnings):
                 return winnings
             case default:
                 return winnings
-    return None
+    else:
+        return winnings
+

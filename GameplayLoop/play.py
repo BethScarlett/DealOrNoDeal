@@ -20,7 +20,7 @@ def play():
                      "£1,000", "£3,000", "£5,000", "£10,000", "£15,000", "£20,000", "£35,000",
                      "£50,000", "£75,000", "£100,000", "£250,000"]
 
-    while len(boxes) > 0 and not acceptoffer:
+    while len(boxes) > 1 and not acceptoffer:
         print("Boxes left: ")
 
         for box in boxes:
@@ -61,8 +61,13 @@ def play():
                     count += 1
         except KeyError:
             print("I'm sorry, but the box you've chosen has already been removed from the pool.")
+    last_box = None
+    for box in boxes:
+        last_box = boxes[box]
 
-    print("You had " + str(userbox))
+    endgame(last_box, userbox)
+
+    #print("You had " + str(userbox))
     end = input("Y/N to end game or loop: ").upper()
 
     while end != "Y" and end != "N":
@@ -72,3 +77,13 @@ def play():
         return True
     else:
         return False
+
+def endgame(last_box, userbox):
+    print(last_box)
+    print(userbox)
+    final_box : Box = gamefunctions.swapbox(last_box, userbox)
+    print(final_box)
+
+    final_box.value = gamefunctions.offertwentythree(final_box.value)
+
+    print(f"You have won £{int(final_box.value / 100)}")

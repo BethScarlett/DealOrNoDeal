@@ -1,3 +1,4 @@
+from GameFunctions.gamefunctions import offertwentythree
 from Setup import *
 from GameplayLoop import play
 

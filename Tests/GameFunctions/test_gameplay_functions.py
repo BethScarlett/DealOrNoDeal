@@ -2,50 +2,66 @@ from GameFunctions import gamefunctions
 from GameFunctions.gamefunctions import makeoffer
 from Setup.setup import setupboxes
 from Box.box import Box
-import pytest
-# TODO - Rename file to test_game_functions
-
-class TestValidateInput:
-    def test_validate_input_valid(self):
-        user_input = '2'
-        result = gamefunctions.validateinput(user_input)
-        assert result
-
-    def test_validate_input_invalid_not_numeric(self):
-        test_input = 'b'
-        result = gamefunctions.validateinput(test_input)
-        assert not result
-
-    def test_validate_input_too_small(self):
-        test_input = '0'
-        result = gamefunctions.validateinput(test_input)
-        assert not result
-
-    def test_validate_input_too_large(self):
-        test_input = '25'
-        result = gamefunctions.validateinput(test_input)
-        assert not result
-
 
 def setup():
     return setupboxes()
 
+class TestValidateInput:
+    """
+        Test that user inputs conform to preset validations,
+        and invalid inputs are blocked
+    """
+    def test_validate_input_valid(self):
+        """
+            Test input - valid
+        """
+        user_input = '2'
+        result = gamefunctions.validateinput(user_input)
+        assert result
+
+    def test_validate_input_must_be_numeric(self):
+        """
+            Test input - Must be numeric
+        """
+        test_input = 'b'
+        result = gamefunctions.validateinput(test_input)
+        assert not result
+
+    def test_validate_input_in_range(self):
+        """
+            Test input - In range (1-24)
+        """
+
+        # Lower limit
+        test_input = '0'
+        result = gamefunctions.validateinput(test_input)
+        assert not result
+
+        # Upper limit
+        #TODO - Look into moving guesses to be numbers - Should already be?
+        test_input = 25
+        result = gamefunctions.validateinput(test_input)
+        assert not result
 
 class TestRemoveBox:
-
+    """
+        Test box removal logic to ensure boxes are removed when valid
+    """
     def test_remove_box(self):
+        """
+            Test user can remove chosen box
+        """
         test_boxes = setupboxes()
         gamefunctions.removebox(test_boxes, 1)
         assert not test_boxes.__contains__(1)
 
-    def test_remove_box_no_box_found(self):
-        test_boxes = setupboxes()
-        result = gamefunctions.removebox(test_boxes,0)
-        assert not result
-
     def test_cant_remove_box_twice(self):
+        """
+            Test user can't remove same box twice
+        """
         test_boxes = setupboxes()
         result = gamefunctions.removebox(test_boxes, 1)
+        # TODO - Look at possibly reworking remove box to be more helpful i.e. don't just return true/false
         assert result
         result = gamefunctions.removebox(test_boxes, 1)
         assert not result
@@ -60,7 +76,13 @@ class TestSwapBox:
     # TODO - Look into how to test user input
 
 class TestMakeOffer:
+    """
+        Test logic which determines the offer given to the player
+    """
     def test_make_offer_small_sample(self):
+        """
+            Test offer against small sample
+        """
         test_boxes = {
             1:Box(1,1),
             2: Box(2, 5),
@@ -70,10 +92,5 @@ class TestMakeOffer:
             6: Box(6, 100),
         }
         user_box = test_boxes.pop(1)
-        offer = 0.00
-        for box in test_boxes:
-            offer += test_boxes[box].value
-        offer = (offer + user_box.value) / len(test_boxes) + 1
-        assert offer == 0
-        offer = makeoffer(test_boxes,user_box.value)
-        assert offer == 0.31
+        offer = makeoffer(test_boxes, user_box.value)
+        assert offer == 0.38

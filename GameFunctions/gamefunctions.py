@@ -44,6 +44,7 @@ def swapbox(rem_box, user_box):
 ########## OFFER ##########
 
 def makeoffer(boxes, userbox):
+    # TODO - Add a degree of randomness
     offer = 0.00
     for box in boxes:
         offer += boxes[box].value

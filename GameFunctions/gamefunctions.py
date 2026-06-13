@@ -1,6 +1,7 @@
 ########## Validation ##########
 import random
-
+# TODO - Add typesafety to methods
+# TODO - Think about moving functions to their own files
 
 def validateinput(choice):
     if not choice.isdigit():
@@ -50,7 +51,7 @@ def makeoffer(boxes, userbox):
     offer = ((offer + userbox) / len(boxes) + 1)/100
 
     if offer < 1:
-        offer = round(offer, 2)
+        offer = round(offer,2)
     else:
         offer = int(offer)
 
